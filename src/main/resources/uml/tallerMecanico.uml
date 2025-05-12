@@ -3156,7 +3156,7 @@
   <record:Record xmi:id="_ickPoMWNEe6GV74yg1DxAg" base_Class="_rnFwYMWLEe6GV74yg1DxAg"/>
   <Codegen:External xmi:id="_L0RQQMWREe6GV74yg1DxAg" name="java.util.Map" base_Classifier="_L0OM8cWREe6GV74yg1DxAg"/>
   <Codegen:External xmi:id="_XYI8EMWREe6GV74yg1DxAg" name="org.iesalandalus.programacion.tallermecanico.controlador.Controlador" base_Classifier="_XYHG4cWREe6GV74yg1DxAg"/>
-  <Codegen:External xmi:id="_zBB_8My-Ee6KuY7X7xWG0g" name="org.iesalandalus.programacion.tallermecanico.modelo.negocio.memoria.FuenteDatosMemoria" base_Classifier="_zA8gYcy-Ee6KuY7X7xWG0g"/>
+  <Codegen:External xmi:id="_zBB_8My-Ee6KuY7X7xWG0g" name="org.iesalandalus.programacion.tallermecanico.modelo.negocio.ficheros.FuenteDatosMemoria" base_Classifier="_zA8gYcy-Ee6KuY7X7xWG0g"/>
   <Codegen:External xmi:id="_0aP1oMy-Ee6KuY7X7xWG0g" name="org.iesalandalus.programacion.tallermecanico.modelo.dominio.Trabajo" base_Classifier="_0aMyUMy-Ee6KuY7X7xWG0g"/>
   <Codegen:External xmi:id="_cp6-kMy_Ee6KuY7X7xWG0g" name="org.iesalandalus.programacion.tallermecanico.modelo.cascada.ModeloCascada" base_Classifier="_0Z-I0My-Ee6KuY7X7xWG0g"/>
   <Codegen:External xmi:id="_cqMEUMy_Ee6KuY7X7xWG0g" name="IFuenteDatos" base_Classifier="_cqKPIMy_Ee6KuY7X7xWG0g"/>

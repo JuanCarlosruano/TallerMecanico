@@ -126,7 +126,7 @@ public class ModeloCascada implements Modelo {
         for (Cliente cliente : clientes.get()) {
             copiaClientes.add(new Cliente(cliente));
         }
-    return copiaClientes;
+        return copiaClientes;
     }
     @Override
     public List<Vehiculo> getVehiculos() {

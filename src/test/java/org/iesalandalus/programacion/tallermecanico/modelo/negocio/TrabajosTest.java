@@ -2,7 +2,6 @@ package org.iesalandalus.programacion.tallermecanico.modelo.negocio;
 
 import org.iesalandalus.programacion.tallermecanico.modelo.TallerMecanicoExcepcion;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.*;
-import org.iesalandalus.programacion.tallermecanico.modelo.negocio.memoria.Trabajos;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -47,7 +46,7 @@ class TrabajosTest {
 
     @BeforeEach
     void init() {
-        trabajos = new Trabajos();
+        trabajos = new org.iesalandalus.programacion.tallermecanico.modelo.negocio.memoria.Trabajos();
         revision = mock();
         when(revision.getCliente()).thenReturn(cliente1);
         when(revision.getVehiculo()).thenReturn(vehiculo1);

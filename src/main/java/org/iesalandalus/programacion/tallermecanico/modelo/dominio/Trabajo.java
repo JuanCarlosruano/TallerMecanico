@@ -8,7 +8,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 public abstract class Trabajo {
-    static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ISO_DATE;
+    static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final float FACTOR_DIA = 10;
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
@@ -16,7 +16,7 @@ public abstract class Trabajo {
     private Cliente cliente;
     private Vehiculo vehiculo;
 
-    protected Trabajo(Cliente cliente, Vehiculo vehiculo, LocalDate fechaInicio) {
+    protected Trabajo(Cliente cliente, Vehiculo vehiculo, LocalDate fechaInicio){
         setCliente(cliente);
         setVehiculo(vehiculo);
         setFechaInicio(fechaInicio);
@@ -24,7 +24,7 @@ public abstract class Trabajo {
         fechaFin = null;
     }
 
-    protected Trabajo(Trabajo trabajo) {
+    protected Trabajo(Trabajo trabajo){
         Objects.requireNonNull(trabajo, "El trabajo no puede ser nulo.");
         cliente = new Cliente(trabajo.cliente);
         vehiculo = trabajo.vehiculo;
@@ -33,21 +33,21 @@ public abstract class Trabajo {
         horas = trabajo.horas;
     }
 
-    public static Trabajo copiar(Trabajo trabajo) {
+
+    public static Trabajo copiar(Trabajo trabajo){
         Objects.requireNonNull(trabajo, "El trabajo no puede ser nulo.");
         Trabajo resultado = null;
-        if (trabajo instanceof Revision revision) {
+        if (trabajo instanceof  Revision revision){
             resultado = new Revision(revision);
-        } else if (trabajo instanceof Mecanico mecanico) {
+        } else if (trabajo instanceof Mecanico mecanico){
             resultado = new Mecanico(mecanico);
         }
         return resultado;
     }
 
-    public static Trabajo get(Vehiculo vehiculo) {
-        return new Revision(Cliente.get("78124958F"), vehiculo, LocalDate.now());
+    public static Trabajo get(Vehiculo vehiculo){
+        return new Revision(Cliente.get("77248816G"), vehiculo, LocalDate.now());
     }
-
 
     public LocalDate getFechaInicio() {
         return fechaInicio;
@@ -80,6 +80,16 @@ public abstract class Trabajo {
         return horas;
     }
 
+    public void anadirHoras(int horas) throws TallerMecanicoExcepcion {
+        if (horas <= 0) {
+            throw new IllegalArgumentException("Las horas a añadir deben ser mayores que cero.");
+        }
+        if (estaCerrado()) {
+            throw new TallerMecanicoExcepcion("No se puede añadir horas, ya que el trabajo está cerrado.");
+        }
+        this.horas += horas;
+    }
+
     public Cliente getCliente() {
         return cliente;
     }
@@ -98,16 +108,6 @@ public abstract class Trabajo {
         this.vehiculo = vehiculo;
     }
 
-    public void anadirHoras(int horas) throws TallerMecanicoExcepcion {
-        if (estaCerrado()) {
-            throw new TallerMecanicoExcepcion("No se puede añadir horas, ya que el trabajo está cerrado.");
-        }
-        if (horas <= 0) {
-            throw new IllegalArgumentException("Las horas a añadir deben ser mayores que cero.");
-        }
-        this.horas += horas;
-    }
-
     public void cerrar(LocalDate fechaFin) throws TallerMecanicoExcepcion {
         if (estaCerrado()) {
             throw new TallerMecanicoExcepcion("El trabajo ya está cerrado.");
@@ -119,24 +119,22 @@ public abstract class Trabajo {
         return fechaFin != null;
     }
 
-    private float getPrecioFijo() {
-        return getDias() * 10;
+    private float getDias() {
+        return (estaCerrado() ? ChronoUnit.DAYS.between(fechaInicio, fechaFin) : 0);
     }
+
+    private float getPrecioFijo(){
+        return getDias() * FACTOR_DIA;
+    }
+
+    public abstract float getPrecioEspecifico();
 
     public float getPrecio() {
         return getPrecioFijo() + getPrecioEspecifico();
     }
 
-    public abstract float getPrecioEspecifico();
-
-
-    private float getDias() {
-        return (estaCerrado() ? ChronoUnit.DAYS.between(fechaInicio, fechaFin) : 0);
-    }
-
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
         if (!(o instanceof Trabajo trabajo)) return false;
         return Objects.equals(fechaInicio, trabajo.fechaInicio) && Objects.equals(cliente, trabajo.cliente) && Objects.equals(vehiculo, trabajo.vehiculo);
     }
@@ -146,7 +144,3 @@ public abstract class Trabajo {
         return Objects.hash(fechaInicio, cliente, vehiculo);
     }
 }
-
-
-
-

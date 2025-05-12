@@ -11,5 +11,6 @@ public enum FabricaModelo {
             return new ModeloCascada(fabricaFuenteDatos);
         }
     };
+
     public abstract Modelo crear(FabricaFuenteDatos fabricaFuenteDatos);
 }

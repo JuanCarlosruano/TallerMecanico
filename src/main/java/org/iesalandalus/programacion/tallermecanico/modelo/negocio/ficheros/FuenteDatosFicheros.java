@@ -6,19 +6,18 @@ import org.iesalandalus.programacion.tallermecanico.modelo.negocio.ITrabajos;
 import org.iesalandalus.programacion.tallermecanico.modelo.negocio.IVehiculos;
 
 public class FuenteDatosFicheros implements IFuenteDatos {
-
     @Override
-    public IClientes crearClientes(){
+    public IClientes crearClientes() {
         return Clientes.getInstancia();
     }
 
     @Override
-    public IVehiculos crearVehiculos(){
+    public IVehiculos crearVehiculos() {
         return Vehiculos.getInstancia();
     }
 
     @Override
-    public ITrabajos crearTrabajos(){
+    public ITrabajos crearTrabajos() {
         return Trabajos.getInstancia();
     }
 }

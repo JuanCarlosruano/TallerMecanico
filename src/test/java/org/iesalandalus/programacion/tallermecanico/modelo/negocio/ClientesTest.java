@@ -2,6 +2,8 @@ package org.iesalandalus.programacion.tallermecanico.modelo.negocio;
 
 import org.iesalandalus.programacion.tallermecanico.modelo.TallerMecanicoExcepcion;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente;
+import org.iesalandalus.programacion.tallermecanico.modelo.negocio.ficheros.Clientes;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,11 +21,14 @@ class ClientesTest {
 
     @BeforeEach
     void init() {
-        clientes = new Clientes();
+        clientes = Clientes.getInstancia();
         cliente1 = mock();
         when(cliente1.getDni()).thenReturn("11223344B");
         cliente2 = mock();
         when(cliente2.getDni()).thenReturn("11111111H");
+        for (Cliente cliente : clientes.get()) {
+            assertDoesNotThrow(() -> clientes.borrar(cliente));
+        }
     }
 
     @Test
@@ -106,7 +111,7 @@ class ClientesTest {
     @Test
     void modificarClienteExistenteNombreValidoTelefonoValidoModificaClienteCorrectamente() {
         assertDoesNotThrow(() -> clientes.insertar(cliente1));
-        assertDoesNotThrow(() -> clientes.modificar(cliente1, "Patricio Estrella", "950123456"));
+        Assertions.assertDoesNotThrow(() -> clientes.modificar(cliente1, "Patricio Estrella", "950123456"));
         verify(cliente1).setNombre("Patricio Estrella");
         verify(cliente1).setTelefono("950123456");
     }
@@ -114,7 +119,7 @@ class ClientesTest {
     @Test
     void modificarClienteExistenteNombreNuloTelefonoValidoModificaClienteCorrectamente() {
         assertDoesNotThrow(() -> clientes.insertar(cliente1));
-        assertDoesNotThrow(() -> clientes.modificar(cliente1, null, "950123456"));
+        Assertions.assertDoesNotThrow(() -> clientes.modificar(cliente1, null, "950123456"));
         verify(cliente1, never()).setNombre(any());
         verify(cliente1).setTelefono("950123456");
     }
@@ -122,7 +127,7 @@ class ClientesTest {
     @Test
     void modificarClienteExistenteNombreValidoTelefonoNuloModificaClienteCorrectamente() {
         assertDoesNotThrow(() -> clientes.insertar(cliente1));
-        assertDoesNotThrow(() -> clientes.modificar(cliente1, "Patricio Estrella", null));
+        Assertions.assertDoesNotThrow(() -> clientes.modificar(cliente1, "Patricio Estrella", null));
         verify(cliente1).setNombre("Patricio Estrella");
         verify(cliente1, never()).setTelefono(any());
     }
@@ -130,7 +135,7 @@ class ClientesTest {
     @Test
     void modificarClienteExistenteNombreNuloTelefonoNuloNoModificaCliente() {
         assertDoesNotThrow(() -> clientes.insertar(cliente1));
-        assertDoesNotThrow(() -> clientes.modificar(cliente1, null, null));
+        Assertions.assertDoesNotThrow(() -> clientes.modificar(cliente1, null, null));
         verify(cliente1, never()).setNombre(any());
         verify(cliente1, never()).setTelefono(any());
     }

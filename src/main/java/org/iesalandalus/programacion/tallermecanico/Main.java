@@ -11,9 +11,18 @@ public class Main {
     public static void main(String[] args) {
         IControlador controlador = new Controlador(FabricaModelo.CASCADA, FabricaFuenteDatos.FICHEROS, FabricaVista.GRAFICA);
         controlador.comenzar();
-
-
-
-
     }
+    private static FabricaVista procesarArgumentosVista(String[] args){
+        FabricaVista fabricaVista = FabricaVista.TEXTO;
+        for (String argumento : args){
+            if (argumento.equalsIgnoreCase("ventana")){
+                fabricaVista = FabricaVista.GRAFICA;
+
+            } else if (argumento.equalsIgnoreCase("Texto")){
+                fabricaVista = FabricaVista.TEXTO;
+            }
+        }
+        return fabricaVista;
+    }
+
 }

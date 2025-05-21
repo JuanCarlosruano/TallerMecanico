@@ -58,4 +58,5 @@ public interface Vista {
 
     void mostrarEstadisticasMensuales(Map<TipoTrabajo, Integer> estadisticas);
 
+
 }

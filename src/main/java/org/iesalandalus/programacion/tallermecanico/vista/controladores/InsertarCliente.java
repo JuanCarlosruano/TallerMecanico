@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import org.iesalandalus.programacion.tallermecanico.modelo.Modelo;
 import org.iesalandalus.programacion.tallermecanico.modelo.cascada.ModeloCascada;
+import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente;
 import org.iesalandalus.programacion.tallermecanico.vista.VistaVentanas;
 import org.iesalandalus.programacion.tallermecanico.vista.eventos.Evento;
 import org.iesalandalus.programacion.tallermecanico.vista.utilidades.Controlador;
@@ -28,6 +29,8 @@ public class InsertarCliente extends Controlador{
                 VistaVentanas.getInstancia().getGestorEventos().notificar(Evento.INSERTAR_CLIENTE);
 
         }
+
+
 
     }
 

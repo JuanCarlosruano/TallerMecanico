@@ -23,9 +23,9 @@
             </VBox>
             <VBox prefHeight="301.0" prefWidth="243.0" spacing="20.0">
                <children>
-                  <TextField />
-                  <TextField />
-                  <TextField />
+                  <TextField fx:id="tfMarca" />
+                  <TextField fx:id="tfModelo" />
+                  <TextField fx:id="tfMatricula" />
                </children>
                <padding>
                   <Insets bottom="20.0" top="20.0" />
@@ -36,7 +36,7 @@
       <HBox alignment="BOTTOM_RIGHT" prefHeight="98.0" prefWidth="600.0" spacing="30.0">
          <children>
             <Button fx:id="btCancelar" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
-            <Button fx:id="btInsertar" mnemonicParsing="false" onAction="#insertar" text="Insertar" />
+            <Button fx:id="btInsertar" mnemonicParsing="false" onAction="#aceptar" text="Insertar" />
          </children>
          <padding>
             <Insets bottom="40.0" left="20.0" right="20.0" top="20.0" />
